@@ -1,0 +1,74 @@
+<app-nav></app-nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-auto sidebar-bg sidebar-container sticky-top">
+      <div
+        class="flex-row d-flex flex-sm-column flex-nowrap sidebar-bg align-items-center sticky-top">
+        <ul
+          class="flex-row px-3 mx-auto mb-auto text-center nav nav-pills nav-flush flex-sm-column flex-nowrap justify-content-between w-100 align-items-center">
+          <li class="nav-item">
+            <a
+              routerLink="cats"
+              class="px-2 py-3 nav-link"
+              title=""
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-original-title="User">
+              <img
+                loading="lazy"
+                src="../../../assets/icons/Usuario.svg"
+                alt="Breeds icon" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="catTable"
+              class="px-2 py-3 nav-link"
+              title=""
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-original-title="User">
+              <img
+                loading="lazy"
+                src="../../../assets/icons/Usuario.svg"
+                alt="Cat table icon" />
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/dashboard"
+              routerLinkActive="bg-blue-800"
+              class="px-2 py-3 nav-link"
+              title=""
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-original-title="Home">
+              <img
+                loading="lazy"
+                src="../../../assets/icons/Home.svg"
+                alt="dashboard icon" />
+            </a>
+          </li>
+          
+          
+        </ul>
+        <a
+          href="/"
+          class="p-3 d-block link-dark text-decoration-none"
+          title=""
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-original-title="Logout">
+          <img
+            loading="lazy"
+            src="../../../assets/icons/LogOut.svg"
+            alt="Logout icon" />
+        </a>
+      </div>
+    </div>
+    <div class="p-5 col-sm min-vh-100 content">
+      <!-- content -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

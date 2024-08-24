@@ -1,0 +1,72 @@
+
+
+
+<div class="mt-5 container-fluid">
+
+  <form>
+    <div class="mb-3">
+      <label for="search" class="form-label">Buscar Gatos</label>
+      <input
+        type="text"
+        id="search"
+        class="form-control"
+        [formControl]="filter"
+        placeholder="Buscar..."
+  
+      >
+    </div>
+    <!-- <button type="button" class="btn btn-primary" (click)="onInputChange()">Buscar</button> -->
+  </form>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">name</th>
+			<th scope="col">country code</th>
+			<th scope="col">origin</th>
+      <th scope="col">temperament</th>
+			<th scope="col">description</th>
+			<th scope="col">dog friendly</th>
+      <th scope="col">intelligence</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (cat of breeds$ | async; track cat.name; let i = $index) {
+			<tr>
+				<th scope="row">{{ i + 1 }}</th>
+				<td>
+					<ngb-highlight [result]="cat.name" [term]="filter.value" />
+				</td>
+        <td>
+					<ngb-highlight [result]="cat.country_code" [term]="filter.value" />
+				</td>
+        <td>
+					<ngb-highlight [result]="cat.origin" [term]="filter.value" />
+				</td>
+    
+        <td>
+					<ngb-highlight [result]="cat.temperament" [term]="filter.value" />
+				</td>
+        <td>
+					<ngb-highlight [result]="cat.description" [term]="filter.value" />
+				</td>
+				<td><ngb-highlight [result]="cat.dog_friendly | number" [term]="filter.value" /></td>
+				<td><ngb-highlight [result]="cat.intelligence | number" [term]="filter.value" /></td>
+			</tr>
+		} @empty {
+			<tr>
+				<td colspan="8" style="text-align: center">No countries found</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<ngb-pagination
+[collectionSize]="collectionSize"
+[(page)]="page"
+[pageSize]="pageSize"
+(pageChange)="onPageChange($event)"
+>
+</ngb-pagination>
+</div>
+
+
