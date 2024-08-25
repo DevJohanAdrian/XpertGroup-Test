@@ -1,4 +1,4 @@
-# 🚀 Features Back end
+# 🚀 Features Front end
 
 - Angular: Version de angular 18.2.1. generado por angular CLI 
 - Bootstrap: Como framework css
