@@ -6,17 +6,17 @@ import express, { type Router } from "express";
 import { z } from "zod";
 import { catController } from "./catImageController";
 
-export const catRegistry = new OpenAPIRegistry();
+export const catImageRegistry = new OpenAPIRegistry();
 export const catImageRouter: Router = express.Router();
 
-catRegistry.register("CatImage", CatImageSchema);
+catImageRegistry.register("CatImage", CatImageSchema);
 
-catRegistry.registerPath({
+catImageRegistry.registerPath({
   method: "get",
-  path: "/catsImage/images/{breed_id}",
+  path: "/api/v1/catsImage/images/{breed_id}",
   tags: ["CatImage"],
-  // request: { params: GetCatSchema.shape.params },
-  responses: createApiResponse(z.null(), "Success"),
+  request: { params: GetCatImageSchema.shape.params },
+  responses: createApiResponse(z.null(CatImageSchema), "Success"),
 });
 
 catImageRouter.get("/images/:breed_id", validateRequest(GetCatImageSchema), catController.getCatImageById);

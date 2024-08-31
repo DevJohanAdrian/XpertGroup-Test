@@ -5,7 +5,6 @@ import requestLogger from "@/common/middleware/requestLogger";
 import cors from "cors";
 import express, { type Express } from "express";
 import helmet from "helmet";
-import mongoose from "mongoose";
 import { pino } from "pino";
 import corsOptions from "./config/cors";
 import connectDB from "./database";
@@ -39,19 +38,5 @@ app.use(errorHandler());
 // Conexión a MongoDB
 connectDB();
 
-// const mongoURI: string = 'mongodb://localhost:27017/catdb'; // Cambia 'yourdbname' por el nombre de tu base de datos
-
-// mongoose.connect(mongoURI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// })
-// .then(() => console.log('MongoDB connected'))
-// .catch(err => console.error(err));
-
-// mongoose.connect('mongodb://localhost:27017/catdb',
-//     options:{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
 
 export { app, logger };

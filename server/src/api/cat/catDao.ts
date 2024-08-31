@@ -17,7 +17,7 @@ export class CatDao {
    *
    * @param {*} req
    * @param {*} res
-   * @returns A message
+   * @returns A array of breeds
    */
   async getAllBreedsAsync(): Promise<Cat[]> {
     const response = await apiAxionIntance.get("/breeds");
@@ -41,7 +41,7 @@ export class CatDao {
    * @param {query} query
    * @returns A single breed by filters
    */
-  async searchBreedsAsync(query: string): Promise<Cat> {
+  async searchBreedsAsync(query: string): Promise<Cat[]> {
     const response = await apiAxionIntance.get(`/breeds/search?q=${query}`);
     return response.data;
   }

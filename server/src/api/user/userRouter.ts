@@ -1,5 +1,5 @@
 import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
-import { GetUserSchema, LoginSchema, RegisterSchema } from "@/api/user/userModel";
+import { GetUserSchema, UserSchema, PostRegisterUserSchema } from "@/api/user/userModel";
 import { validateRequest } from "@/common/utils/httpHandlers";
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import express, { type Router } from "express";
@@ -9,47 +9,46 @@ import { userController } from "./userController";
 export const userRegistry = new OpenAPIRegistry();
 export const userRouter: Router = express.Router();
 
-userRegistry.register("User", LoginSchema);
-
-// userRegistry.registerPath({
-//   method: "get",
-//   path: "/users",
-//   tags: ["User"],
-//   responses: createApiResponse(z.array(UserSchema), "Success"),
-// });
-
-// userRouter.get("/", userController.getUsers);
-
-// userRegistry.registerPath({
-//   method: "get",
-//   path: "/users/{id}",
-//   tags: ["User"],
-//   request: { params: GetUserSchema.shape.params },
-//   responses: createApiResponse(UserSchema, "Success"),
-// });
-
-// userRouter.get("/:id", validateRequest(GetUserSchema), userController.getUser);
+userRegistry.register("User", UserSchema);
 
 userRegistry.registerPath({
-  method: "get",
-  path: "/register",
+  method: "post",
+  path: "/api/v1/users/register",
   tags: ["User"],
-  responses: createApiResponse(RegisterSchema, "Success"),
+  request: {
+    body: {
+      content: {
+        "application/json": {
+          schema: PostRegisterUserSchema.shape.body,
+        },
+      },
+    },
+  },
+  responses: createApiResponse(UserSchema, "Success"),
 });
-userRouter.post("/register", userController.registerUser);
+userRouter.post("/register", validateRequest(PostRegisterUserSchema), userController.registerUser);
 
 userRegistry.registerPath({
-  method: "get",
-  path: "/login",
+  method: "post",
+  path: "/api/v1/users/login",
   tags: ["User"],
-  responses: createApiResponse(LoginSchema, "Success"),
+  request: {
+    body: {
+      content: {
+        "application/json": {
+          schema: PostRegisterUserSchema.shape.body,
+        },
+      },
+    },
+  },
+  responses: createApiResponse(UserSchema, "Success"),
 });
-userRouter.post("/login", userController.loginUser);
+userRouter.post("/login", validateRequest(UserSchema), userController.loginUser);
 
 userRegistry.registerPath({
   method: "get",
-  path: "/protected",
+  path: "/api/v1/users/protected",
   tags: ["User"],
-  responses: createApiResponse(LoginSchema, "Success"),
+  responses: createApiResponse(UserSchema, "Success"),
 });
 userRouter.get("/protected", userController.getUserProfile);

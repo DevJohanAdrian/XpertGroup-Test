@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 
-import { CatDao } from "@/api/cat/catDao";
-import type { User } from "@/api/user/userModel";
+import { CatDao, } from "@/api/cat/catDao";
+import type { Cat, CatById } from "@/api/cat/catModel";
 import { ServiceResponse } from "@/common/models/serviceResponse";
 import { logger } from "@/server";
 
@@ -17,15 +17,15 @@ export class CatService {
    *
    * @param {*} req
    * @param {*} res
-   * @returns A message
+   * @returns A array of breeds
    */
-  async getAllBreeds(): Promise<ServiceResponse<User[] | null>> {
+  async getAllBreeds(): Promise<ServiceResponse<Cat[] | null>> {
     try {
       const breeds = await this.catDao.getAllBreedsAsync();
       if (!breeds || breeds.length === 0) {
         return ServiceResponse.failure("No cats breeds found", null, StatusCodes.NOT_FOUND);
       }
-      return ServiceResponse.success<any[]>("Breeds found", breeds);
+      return ServiceResponse.success<Cat[]>("Breeds found", breeds);
     } catch (ex) {
       const errorMessage = `Error finding all cat breeds: $${(ex as Error).message}`;
       logger.error(errorMessage);
@@ -43,13 +43,13 @@ export class CatService {
    * @param {number} id
    * @returns A single cat breed
    */
-  async getBreedById(id: string): Promise<ServiceResponse<User | null>> {
+  async getBreedById(id: string): Promise<ServiceResponse<CatById | null>> {
     try {
       const breed = await this.catDao.getBreedByIdAsync(id);
       if (!breed) {
         return ServiceResponse.failure("Cat breed not found", null, StatusCodes.NOT_FOUND);
       }
-      return ServiceResponse.success<any>("Breeds found", breed);
+      return ServiceResponse.success<CatById>("Breeds found", breed);
     } catch (ex) {
       const errorMessage = `Error finding the cat breed with id ${id}:, ${(ex as Error).message}`;
       logger.error(errorMessage);
@@ -67,13 +67,13 @@ export class CatService {
    * @param {query} query
    * @returns A single breed by filters
    */
-  async searchBreeds(query: string): Promise<ServiceResponse<User | null>> {
+  async searchBreeds(query: string): Promise<ServiceResponse<Cat[] | null>> {
     try {
       const breedResult = await this.catDao.searchBreedsAsync(query);
       if (!breedResult) {
         return ServiceResponse.failure("Cat breed not found", null, StatusCodes.NOT_FOUND);
       }
-      return ServiceResponse.success<any>("Breeds found", breedResult);
+      return ServiceResponse.success<Cat[]>("Breeds found", breedResult);
     } catch (ex) {
       const errorMessage = `Error searching the cat breed:, ${(ex as Error).message}`;
       logger.error(errorMessage);

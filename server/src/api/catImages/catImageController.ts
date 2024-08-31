@@ -11,7 +11,6 @@ class CatImageController {
    * @returns A cat image
    */
   public getCatImageById: RequestHandler = async (req: Request, res: Response) => {
-    console.log("holaimage", req.params.breed_id);
     const id = req.params.breed_id as string;
     const serviceResponse = await catImageService.getCatImageById(id);
     return handleServiceResponse(serviceResponse, res);
