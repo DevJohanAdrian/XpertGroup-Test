@@ -1,5 +1,5 @@
 import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
-import { GetUserSchema, UserSchema, PostRegisterUserSchema } from "@/api/user/userModel";
+import { GetUserSchema, UserSchema, PostRegisterLoginUserSchema } from "@/api/user/userModel";
 import { validateRequest } from "@/common/utils/httpHandlers";
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import express, { type Router } from "express";
@@ -19,14 +19,14 @@ userRegistry.registerPath({
     body: {
       content: {
         "application/json": {
-          schema: PostRegisterUserSchema.shape.body,
+          schema: PostRegisterLoginUserSchema.shape.body,
         },
       },
     },
   },
   responses: createApiResponse(UserSchema, "Success"),
 });
-userRouter.post("/register", validateRequest(PostRegisterUserSchema), userController.registerUser);
+userRouter.post("/register", validateRequest(PostRegisterLoginUserSchema), userController.registerUser)
 
 userRegistry.registerPath({
   method: "post",
@@ -36,19 +36,20 @@ userRegistry.registerPath({
     body: {
       content: {
         "application/json": {
-          schema: PostRegisterUserSchema.shape.body,
+          schema: PostRegisterLoginUserSchema.shape.body,
         },
       },
     },
   },
   responses: createApiResponse(UserSchema, "Success"),
 });
-userRouter.post("/login", validateRequest(UserSchema), userController.loginUser);
+userRouter.post("/login", validateRequest(PostRegisterLoginUserSchema), userController.loginUser);
 
 userRegistry.registerPath({
   method: "get",
-  path: "/api/v1/users/protected",
+  path: "/api/v1/users/protected/{userId}",
   tags: ["User"],
+  request: { params: GetUserSchema.shape.params },
   responses: createApiResponse(UserSchema, "Success"),
 });
-userRouter.get("/protected", userController.getUserProfile);
+userRouter.get("/protected/:userId", validateRequest(GetUserSchema),  userController.getUserProfile);

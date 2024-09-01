@@ -1,4 +1,5 @@
 import { z } from "zod";
+import mongoose from 'mongoose';
 
 export const commonValidations = {
   id: z.string(),
@@ -7,3 +8,10 @@ export const commonValidations = {
   // .refine((num) => num > 0, "ID must be a positive number"),
   // ... other common validations
 };
+
+
+export const objectIdSchema = z.custom((val) => {
+  return mongoose.Types.ObjectId.isValid(val);
+}, {
+  message: "Invalid ObjectId"
+});
