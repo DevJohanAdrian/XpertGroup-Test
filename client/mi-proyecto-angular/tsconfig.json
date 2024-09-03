@@ -7,6 +7,7 @@
       "@shared/*": ["./src/app/shared/*"],
       // "@interfaces/*": ["./src/app/interfaces/*"],
        "@services/*": ["./src/app/core/services/*"],
+       "@assets/*": ["./src/assets/*"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

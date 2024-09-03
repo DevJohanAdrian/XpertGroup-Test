@@ -27,58 +27,66 @@
         
 
         <div *ngIf="breedDetails" class="mt-4">
-          <h3>{{ breedDetails.name }}</h3>
-          <p>{{ breedDetails.description }}</p>
-          <p *ngIf="breedDetails.temperament"><span class="text-dark fw-semibold">Temperament:</span> {{ breedDetails.temperament }}</p>
-          <p *ngIf="breedDetails.origin"><span class="text-dark fw-semibold">Origin:</span> {{ breedDetails.origin }}</p>
-          <p *ngIf="breedDetails.alt_names"><span class="text-dark fw-semibold">Alternative names:</span> {{ breedDetails.alt_names }}</p>
-          <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div
-                *ngFor="let image of breedImages; let i = index"
-                class="carousel-item max-w-sm"
-                [class.active]="i === 0"
-              >
-                <img
-                  [src]="image.url"
-                  class="d-block w-100 object-fit-cover rounded"
-                  alt="Imagen de gato"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-dark">Width size: {{ image.width }}</h5>
-                  <h5 class="text-dark">Height size: {{ image.height }}</h5>
-                </div>
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          <div class="container mx-auto">
+            <h3>{{ breedDetails.name }}</h3>
+            <p>{{ breedDetails.description }}</p>
+            <p *ngIf="breedDetails.temperament"><span class="text-dark fw-semibold">Temperament:</span> {{ breedDetails.temperament }}</p>
+            <p *ngIf="breedDetails.origin"><span class="text-dark fw-semibold">Origin:</span> {{ breedDetails.origin }}</p>
+            <p *ngIf="breedDetails.alt_names"><span class="text-dark fw-semibold">Alternative names:</span> {{ breedDetails.alt_names }}</p>
+
           </div>
+       
+         <div class="container d-flex justify-content-center">
+          <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              *ngFor="let image of breedImages; let i = index"
+              class="max-w-sm carousel-item"
+              [class.active]="i === 0"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="text-dark">Width size: {{ image.width }}</h5>
+              <h5 class="text-dark">Height size: {{ image.height }}</h5>
+            </div>
+              <img
+                [src]="image.url"
+                class="rounded d-block w-100 object-fit-cover"
+                alt="Imagen de gato"
+              />
+             
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+         </div>
+      
         </div>
 
       

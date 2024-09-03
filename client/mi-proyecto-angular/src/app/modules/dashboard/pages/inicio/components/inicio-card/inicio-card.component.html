@@ -1,114 +1,16 @@
 <div class="mx-auto card container-fluid">
   <div class="m-4 d-flex flex-column">
+
+   
+
     <div class="balance">
-      <h3 class="text-center balance__title fw-semibold">This is the Cat Domain</h3>
-      <div *ngIf="showImage; then victorianCat; else soldierCat"></div>
-      <ng-template #victorianCat>
-        <div class="gap-2 d-flex">
-          <img src="../../../../../../../assets/Inicio/los-gatos-dominan-el-planeta.jpg" alt="">
-          <div
-            class="d-flex align-items-center justify-content-center balance__img">
-            <a class="balance__link" role="button" (click)="onShowBalance()">
-              <img
-                class="w-100"
-                loading="lazy"
-                src="../../../../../../../assets/icons/Open-eye.svg"
-                alt="Open eye icon" />
-            </a>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #soldierCat>
-        <div class="gap-2 d-flex">
-          <span class="balance__value d-block fw-semibold">$***</span>
-          <div
-            class="d-flex align-items-center justify-content-center balance__img">
-            <a class="balance__link" role="button" (click)="onShowBalance()">
-              <img
-                class="w-100"
-                loading="lazy"
-                src="../../../../../../../assets/icons/Closed-eye.svg"
-                alt="Closed eye icon" />
-            </a>
-          </div>
-        </div>
-      </ng-template>
-      <p class="my-3 balance__title fw-normal d-block">Saldo en EZPay</p>
-    </div>
-
-    <div class="icons">
-      <div
-        class="flex-wrap mx-2 icons__buttons d-flex align-items-center justify-content-between">
-        <div
-          class="gap-2 icons__item d-flex flex-column flex-nowrap align-items-center justify-content-center">
-          <div class="icons__img">
-            <img
-              class="mt-1 icons__icon d-block w-100"
-              loading="lazy"
-              src="../../../../../../../assets/icons/Ingresar-tarjeta.svg"
-              alt="Enter card icon" />
-          </div>
-          <p class="icons__text fw-normal">Ingresar</p>
-        </div>
-
-        <div
-          class="gap-2 icons__item d-flex flex-column flex-nowrap align-items-center justify-content-center">
-          <div class="icons__img">
-            <img
-              class="mt-1 icons__icon d-block w-100"
-              loading="lazy"
-              src="../../../../../../../assets/icons/Transferir.svg"
-              alt="Enter card icon" />
-          </div>
-          <p class="icons__text fw-normal">Transferir</p>
-        </div>
-        <div
-          class="gap-2 icons__item d-flex flex-column flex-nowrap align-items-center justify-content-center">
-          <div class="icons__img">
-            <img
-              class="mt-1 icons__icon d-block w-100"
-              loading="lazy"
-              src="../../../../../../../assets/icons/Retirar.svg"
-              alt="Enter card icon" />
-          </div>
-          <p class="icons__text fw-normal">Retirar</p>
-        </div>
-        <div
-          class="gap-2 icons__item d-flex flex-column flex-nowrap align-items-center justify-content-center">
-          <div class="icons__img">
-            <img
-              class="mt-1 icons__icon d-block w-100"
-              loading="lazy"
-              src="../../../../../../../assets/icons/Invertir.svg"
-              alt="Enter card icon" />
-          </div>
-          <p class="icons__text fw-normal">Invertir</p>
-        </div>
+      <h2 class="text-center fw-semibold">This is the Cat Domain</h2>
+      <div class="container mx-auto d-flex">
+        <img class="d-block object-fit-cover w-100" src="../../../../../../../assets/Inicio/los-gatos-dominan-el-planeta.jpg" alt="">
       </div>
     </div>
-<!-- 
-    <div class="mt-3 associated">
-      <div
-        class="d-flex justify-content-between align-items-center associated__container">
-        <div class="associated__item">
-          <p class="associated__text fw-semibold">Tarjetas asiociadas</p>
-        </div>
-        <div class="associated__item">
-          <a
-            routerLink=""
-            class="gap-3 d-flex align-items-center justify-content-between text-decoration-none">
-            <img
-              class="associated__icon align-self-start"
-              loading="lazy"
-              src="../../../../../../../assets/icons/Asociar.svg"
-              alt="" />
-            <p class="associated__text associated__text-color fw-semibold">
-              Asociar una nueva
-            </p>
-          </a>
-        </div>
-      </div>
-  
-    </div> -->
+
+
+
   </div>
 </div>

@@ -6,11 +6,12 @@ import { AuthService } from '../services/auth.services';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  private userId: string= '';
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.authService.getUser()) {
+    this.userId = this.authService.sharedUserId()
+    if (this.authService.getUser(this.userId)) {
       return true;
     } else {
       this.router.navigate(['/login']);

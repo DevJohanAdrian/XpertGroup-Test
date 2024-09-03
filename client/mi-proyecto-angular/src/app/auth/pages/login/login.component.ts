@@ -18,7 +18,8 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         if (response.success) {
-          this.router.navigate(['/protected']);
+        this.authService.setUser(response.responseObject._id)
+        this.router.navigate(['/protected']);
         } else {
           this.errorMessage = 'Usuario o contraseña incorrectos';
         }

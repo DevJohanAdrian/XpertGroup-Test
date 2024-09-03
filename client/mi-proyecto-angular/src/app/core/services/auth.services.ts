@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/v1/users'; // Ajusta esta URL según tu backend
+  private userId: string  = '';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,16 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/register`,  { username, password } );
   }
 
-  getUser(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/protected`);
+  getUser(userid: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/protected/${userid}`);
+  }
+
+  setUser(id: string) {
+    this.userId = id;
+    // Aquí iría la lógica de autenticación real
+  }
+
+  sharedUserId(): string{
+    return this.userId;
   }
 }

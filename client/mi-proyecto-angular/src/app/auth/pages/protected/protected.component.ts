@@ -8,13 +8,16 @@ import { AuthService } from '../../../core/services/auth.services';
 })
 export class ProtectedComponent implements OnInit {
   user: any;
+  private userId: string= '';
+
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.getUser().subscribe(
+    this.userId = this.authService.sharedUserId()
+    this.authService.getUser(this.userId).subscribe(
       user => {
-        this.user = user;
+        this.user = user.responseObject;
       },
       () => {
         console.error('No se pudo obtener la información del usuario');
